@@ -18,7 +18,7 @@ Cascade Classifier Architecture: We utilized a multi-stage approach to progressi
 
 Cost-Sensitive Learning: We adjusted the internal loss functions of the XGBoost and Random Forest models. By assigning a higher penalty to misclassified podium results, we forced the algorithms to prioritize the minority class, significantly improving the Macro-F1 Score and Precision-Recall trade-off.
 
-🏁 Final Results
+## 🏁 Final Results
 Optimal Model: XGBoost with cost-sensitive tuning.
 
 Key Finding: Qualifying position remains the strongest predictor, but team reliability and track-specific "overtake difficulty" coefficients were essential for high-accuracy predictions.
