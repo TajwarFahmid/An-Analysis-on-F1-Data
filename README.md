@@ -11,9 +11,16 @@ By analyzing track characteristics, driver performance, and session variables, t
 * **Historical Dashboard:** Integration of the initial project dashboard (developed last semester) providing a retrospective look at seasonal trends.
 * **Complete Datasets:** All raw and processed F1 datasets are included in the repository for full reproducibility.
 
-## 📁 Repository Structure
-```text
-├── datasets/           # Processed F1 historical data (Races, Results, Qualifying)
-├── app.py              # Streamlit application entry point
-├── dashboard/          # Initial project dashboard and visualization assets        
-└── final powerpoint
+## 🛠️ Handling Class Imbalance
+During the modeling phase, we identified a significant class imbalance (podium finishes vs. field results). To ensure the model didn't just "guess" the majority class, we implemented a two-tier strategy:
+
+Cascade Classifier Architecture: We utilized a multi-stage approach to progressively filter out majority-class instances, allowing the final models to focus on the nuances of high-probability podium finishers.
+
+Cost-Sensitive Learning: We adjusted the internal loss functions of the XGBoost and Random Forest models. By assigning a higher penalty to misclassified podium results, we forced the algorithms to prioritize the minority class, significantly improving the Macro-F1 Score and Precision-Recall trade-off.
+
+🏁 Final Results
+Optimal Model: XGBoost with cost-sensitive tuning.
+
+Key Finding: Qualifying position remains the strongest predictor, but team reliability and track-specific "overtake difficulty" coefficients were essential for high-accuracy predictions.
+
+Deployment: The final model is fully serialized and served via the Streamlit dashboard.
